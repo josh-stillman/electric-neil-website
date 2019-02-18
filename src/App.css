@@ -1,5 +1,16 @@
 .App {
   text-align: center;
+  background-color: black;
+  min-width: 375px;
+  max-width: 100vw;
+  min-height: 100vh;
+  color: lightgrey;
+  font-family: monospace;
+  font-weight: 700;
+}
+
+a {
+  color: lightgrey;
 }
 
 .App-logo {
@@ -29,4 +40,51 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App__band-pics {
+  max-width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+  align-content: center;
+}
+
+.App__logo {
+  max-width: 100%;
+}
+
+.App__band-pics {
+  margin-bottom: 64px;
+}
+
+.App__band-pics-closeup--landscape {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.App__links {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 42px;
+}
+
+.App__link-item {
+  font-size: 64px;
+}
+
+.App__footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  white-space: pre-wrap;
+}
+
+.App__footer-item {
+  display: flex;
+  font-size: 14px;
+  font-style: italic;
 }
