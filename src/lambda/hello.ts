@@ -4,6 +4,6 @@ exports.handler = function(event: APIGatewayEvent, context: Context, callback: C
   console.log('queryStringParameters', event.queryStringParameters);
   callback(null, {
     statusCode: 200,
-    body: JSON.stringify({ message: 'Hello, World!' })
+    body: JSON.stringify({ message: process.env.MESSAGE || 'nothin here' })
   });
 }
