@@ -10,7 +10,7 @@ class SignupForm extends Component {
   }
 
   getMessage = () => {
-    fetch(`${baseUrl()}/.netlify/functions/hello`)
+    fetch(`/.netlify/functions/hello`)
       .then(res => res.json())
       .then(({message}) => this.setState({message}))
   }
