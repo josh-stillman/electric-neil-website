@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { baseUrl } from './utils/lambda';
 
 const baseClass = "signup-form"
 
@@ -9,7 +10,7 @@ class SignupForm extends Component {
   }
 
   getMessage = () => {
-    fetch('/.netlify/functions/hello')
+    fetch(`${baseUrl()}/.netlify/functions/hello`)
       .then(res => res.json())
       .then(({message}) => this.setState({message}))
   }
