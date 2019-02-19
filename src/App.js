@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import SignupForm from './SignupForm';
 
 const baseClass = "App"
 
@@ -28,6 +29,8 @@ class App extends Component {
             <img src="/sarah-noir.jpg" height="400px"  />
           </div>
         </div>
+
+        <SignupForm />
 
         <div className={`${baseClass}__links`}>
           <div className={`${baseClass}__link-item`}>
