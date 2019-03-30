@@ -71,10 +71,10 @@ class SignupForm extends Component {
           {error && showError && <p>Invalid Email Address</p>}
         </div>
 
-        <div>
+        {/* <div>
           <button onClick={this.getMessage}>Get new message</button>
           <div>Message is {this.state.message}</div>
-        </div>
+        </div> */}
       </div>
     );
   }

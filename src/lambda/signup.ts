@@ -2,11 +2,12 @@ import { APIGatewayEvent, Callback, Context, Handler } from 'aws-lambda';
 // import { MongoClient, MongoClientOptions, DbCollectionOptions, ReadPreference, Db } from 'mongodb';
 import { MongoClient } from 'mongodb';
 import { getDbName } from '../utils';
+import Subscription from '../services/Subscription';
 
 
 exports.handler = async (event: APIGatewayEvent, context: Context, callback: Callback) => {
   // console.log('queryStringParameters', event.queryStringParameters);
-  const body = JSON.parse(event.body);
+  const body = event.body && JSON.parse(event.body);
   if (!body || !body.email) {
     callback(null, {
       statusCode: 400,
@@ -23,44 +24,49 @@ exports.handler = async (event: APIGatewayEvent, context: Context, callback: Cal
 
 
 
-  const connection = await MongoClient.connect(process.env.MONGO_URL || '');
-  const ndb = await connection.db(getDbName());
+  // const connection = await MongoClient.connect(process.env.MONGO_URL || '');
+  // const ndb = await connection.db(getDbName());
 
-  const subs = await ndb.collection('subscribers');
+  // const subs = await ndb.collection('subscribers');
 
 
 
-  let newRecord;
+  // let newRecord;
 
-  try {
-    newRecord = await subs.insertOne({
-      email: body.email,
-      createdAt: new Date().toISOString(),
-      confirmed: false,
-    });
-  } catch (e) {
-    callback(null, {
-      statusCode: 400,
-      body: JSON.stringify({ message: `A subscriber with that email address already exists.  Try another address.` }),
-    });
-    await connection.close();
-    return;
-  }
+  // try {
+  //   newRecord = await subs.insertOne({
+  //     email: body.email,
+  //     createdAt: new Date().toISOString(),
+  //     confirmed: false,
+  //   });
+  // } catch (e) {
+  //   callback(null, {
+  //     statusCode: 400,
+  //     body: JSON.stringify({ message: `A subscriber with that email address already exists.  Try another address.` }),
+  //   });
+  //   await connection.close();
+  //   return;
+  // }
 
-  console.log("new record is", newRecord)
-  const id = newRecord.insertedId.toHexString();
+  const handler = new Subscription();
+
+  const response = await handler.add(body.email)
+
+
+
+  console.log("new record is", response)
   // check if already exists;
 
 
-
+  const id = response[1];
 
   // insertedId
   // const list = await subs.find({}).toArray();
   // console.log("hey", list)
 
-  await connection.close();
+  // await connection.close();
   callback(null, {
-    statusCode: 200,
+    statusCode: response[0],
     body: JSON.stringify({ message: `email success with id of ${id}` }),
   });
 };
