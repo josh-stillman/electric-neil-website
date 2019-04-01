@@ -26,10 +26,13 @@ export class Database {
       };
 
       const client = await MongoClient.connect(this.url, options);
-      this.db = client.db();
+      this.db = client.db(this.getDbName());
       return this.db;
   }
 
+  getDbName() {
+    return process.env.ENV === 'dev' ? 'DEV' : 'services';
+  }
 
   async getCollection(collectionName: string) {
     return this.db!.collection(collectionName);

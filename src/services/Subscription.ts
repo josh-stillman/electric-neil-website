@@ -1,10 +1,13 @@
-import {getDb, Database} from './Database';
+import { Database} from './Database';
 import { to } from '../utils';
+import { Mailer } from './Mailer';
 
 export default class Subscription {
   db: Database;
+  mailer: Mailer;
   constructor() {
     this.db = new Database();
+    this.mailer = new Mailer();
   }
 
   async add(email: string) {
@@ -13,19 +16,13 @@ export default class Subscription {
     const [err, data] = await to(this.db.addSubscriber(email));
 
     if (err) {
-      return [400, 'That email is already subscribed. Please try a new address'];
+      return [400, 'That email address is already subscribed. Please try a new address'];
     }
 
     const id = data.insertedId.toHexString();
 
+    const mailRes = this.mailer.sendSubscribe(email, id)
+
     return [200, id];
-
-    // send the email.
   }
-
-  // [err, user] = await to(UserModel.findById(1));
-
-  // async remove(email: string) {
-
-  // }
 }
