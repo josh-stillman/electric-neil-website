@@ -1,3 +1,3 @@
-export const baseUrl = () => (
-  process.env.DEPLOY_URL || process.env.URL || ''
+export const getBaseUrl = () => (
+  process.env.DEPLOY_URL || process.env.BASE_URL || ''
 );

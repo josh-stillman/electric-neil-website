@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { baseUrl } from './utils/lambda';
 
 const baseClass = 'signup-form';
 

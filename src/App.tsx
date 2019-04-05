@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 import SignupForm from './SignupForm';
+import { Route, withRouter, RouteComponentProps } from 'react-router';
+import Banner from './components/Banner';
 
 const baseClass = "App"
 
-class App extends Component {
+class App extends Component<RouteComponentProps> {
   render() {
     return (
       <div className="App">
+        <Route exact={true} path="/subscribe/:subscriber_id" render={(props) => <Banner {...props}/>}/>
+
         <a href="https://www.facebook.com/ElectricNeil/" target="_blank">
           <img className={`${baseClass}__logo`} src="/electric-neil-logo2.png" width="350px" />
         </a>
@@ -68,4 +72,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

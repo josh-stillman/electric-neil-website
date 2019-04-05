@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import mailgunTransport from 'nodemailer-mailgun-transport'
 import dotenv from 'dotenv';
+import { getBaseUrl } from '../utils'
 dotenv.config();
 
 export class Mailer {
@@ -25,7 +26,7 @@ export class Mailer {
       to: email,
       subject: 'Join the Electric Neil Revolution✔',
       text: 'NEIL!',
-      html: `<p>hello ${email}, your mongo id is ${id}</p>`
+      html: `<p>hello ${email}, <a href="${getBaseUrl ()}/subscribe/${id}">click here</a> to confirm your subscription. your mongo id is ${id}</p>`
     };
 
     const res = await this.mailService.sendMail(message);
