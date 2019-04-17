@@ -10,7 +10,8 @@ class App extends Component<RouteComponentProps> {
   render() {
     return (
       <div className="App">
-        <Route exact={true} path="/subscribe/:subscriber_id" render={(props) => <Banner {...props}/>}/>
+        <Route exact={true} path="/subscribe/:subscriber_id" render={(props) => <Banner type="subscribe" {...props}/>}/>
+        <Route exact={true} path="/unsubscribe/:subscriber_id" render={(props) => <Banner type="unsubscribe" {...props}/>}/>
 
         <a href="https://www.facebook.com/ElectricNeil/" target="_blank">
           <img className={`${baseClass}__logo`} src="/electric-neil-logo2.png" width="350px" />

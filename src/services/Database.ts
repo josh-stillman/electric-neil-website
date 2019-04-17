@@ -1,4 +1,4 @@
-import { MongoClient, MongoClientOptions, DbCollectionOptions, ReadPreference, Db } from 'mongodb';
+import { MongoClient, MongoClientOptions,  Db, ObjectId } from 'mongodb';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -45,6 +45,21 @@ export class Database {
         createdAt: new Date().toISOString(),
         confirmed: false,
     });
+  }
+
+  async confirmSubscriber(id: string) {
+    const subs = await this.getCollection('subscribers');
+    return await subs.updateOne(
+      { _id : new ObjectId(id) },
+      { $set: { 'confirmed' : true } });
+    }
+
+  async unsubscribe(id: string) {
+    const subs = await this.getCollection('subscribers');
+    const email = await subs.findOne({_id: new ObjectId(id)});
+    const unsubs = await this.getCollection('unsubscribes');
+    await unsubs.insertOne(email);
+    return await subs.deleteOne(email);
   }
 
   async disconnect() {
