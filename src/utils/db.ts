@@ -1,3 +1,5 @@
+// Neflitfy contexts: production, deploy-preview, branch-deploy
+
 export const getDbName = () => (
-  process.env.ENV === 'dev' ? 'DEV' : 'services'
+  process.env.CONTEXT === 'production' ? 'services' : 'DEV'
 );
