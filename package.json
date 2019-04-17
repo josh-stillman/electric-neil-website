@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && netlify-lambda build src/lambda --config ./config/webpack.functions.serve.js",
+    "build": "react-scripts build && netlify-lambda build src/lambda --config ./config/webpack.functions.build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lambda": "netlify-lambda serve src/lambda --config ./config/webpack.functions.js",
+    "lambda": "netlify-lambda serve src/lambda --config ./config/webpack.functions.serve.js",
     "build:lambda": "netlify-lambda build src/lambda --config ./config/webpack.functions.build.js",
     "lint": "tslint -c tslint.json src/**/*.{ts,tsx}"
   },
