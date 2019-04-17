@@ -31,7 +31,7 @@ export class Database {
   }
 
   getDbName() {
-    return process.env.ENV === 'dev' ? 'DEV' : 'services';
+    return process.env.CONTEXT === 'production' ? 'services' : 'DEV';
   }
 
   async getCollection(collectionName: string) {
