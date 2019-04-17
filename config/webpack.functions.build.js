@@ -1,5 +1,15 @@
 // @see https://github.com/netlify/netlify-lambda#webpack-configuration
+const webpack = require('webpack');
+
 module.exports = {
+  plugins: [
+    new webpack.DefinePlugin({
+      CONTEXT: JSON.stringify(process.env.CONTEXT),
+      MONGO_URL: JSON.stringify(process.env.MONGO_URL),
+      MAILGUN_URL: JSON.stringify(process.env.MAILGUN_URL),
+      MAILGUN_API_KEY: JSON.stringify(process.env.MAILGUN_API_KEY),
+    }),
+  ],
   externals: [
     'atpl',
     'bracket',
