@@ -5,15 +5,14 @@ import { getDbName } from '../utils';
 import Subscription from '../services/Subscription';
 
 
-exports.handler = async (event: APIGatewayEvent, context: Context, callback: Callback) => {
+exports.handler = async (event: APIGatewayEvent, context: Context) => {
   // console.log('queryStringParameters', event.queryStringParameters);
   const body = event.body && JSON.parse(event.body);
   if (!body || !body.email) {
-    callback(null, {
+    return {
       statusCode: 400,
       body: JSON.stringify({ message: 'bad request' }),
-    });
-    return;
+    };
   }
 
   // 1. insert record (confirmed === false)
@@ -65,8 +64,12 @@ exports.handler = async (event: APIGatewayEvent, context: Context, callback: Cal
   // console.log("hey", list)
 
   // await connection.close();
-  callback(null, {
+  // callback(null, {
+  //   statusCode: response[0],
+  //   body: JSON.stringify({ message: `email success with id of ${id}` }),
+  // });
+  return {
     statusCode: response[0],
     body: JSON.stringify({ message: `email success with id of ${id}` }),
-  });
+  };
 };

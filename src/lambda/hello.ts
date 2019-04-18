@@ -3,7 +3,7 @@ import { APIGatewayEvent, Callback, Context, Handler } from 'aws-lambda';
 import { MongoClient } from 'mongodb';
 import { getDbName } from '../utils';
 
-exports.handler = async (event: APIGatewayEvent, context: Context, callback: Callback) => {
+exports.handler = async (event: APIGatewayEvent, context: Context) => {
   console.log('queryStringParameters', event.queryStringParameters);
 
   const connection = await MongoClient.connect(process.env.MONGO_URL || '');
@@ -15,8 +15,8 @@ exports.handler = async (event: APIGatewayEvent, context: Context, callback: Cal
   console.log("hey", list)
 
   await connection.close();
-  callback(null, {
+  return {
     statusCode: 200,
     body: JSON.stringify({ message: process.env.MESSAGE || 'nothin here' }),
-  });
+  };
 };
