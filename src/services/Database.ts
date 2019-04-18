@@ -26,6 +26,7 @@ export class Database {
       };
 
       const client = await MongoClient.connect(this.url, options);
+      this.mongoClient = client;
       this.db = client.db(this.getDbName());
       return this.db;
   }
@@ -63,6 +64,8 @@ export class Database {
   }
 
   async disconnect() {
-      this.mongoClient!.close();
+    if(this.mongoClient){
+      this.mongoClient.close();
+    }
   }
 }
