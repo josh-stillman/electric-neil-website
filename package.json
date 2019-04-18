@@ -9,7 +9,8 @@
     "eject": "react-scripts eject",
     "lambda": "netlify-lambda serve src/lambda --config ./config/webpack.functions.serve.js",
     "build:lambda": "netlify-lambda build src/lambda --config ./config/webpack.functions.build.js",
-    "lint": "tslint -c tslint.json src/**/*.{ts,tsx}"
+    "lint": "tslint -c tslint.json src/**/*.{ts,tsx}",
+    "zip": "tsc src/lambda/signup.ts --rootDir src/lambda  --outDir lambda/signup && tsc src/lambda/confirm.ts --rootDir src/lambda  --outDir lambda/confirm && tsc src/lambda/unsubscribe.ts --rootDir src/lambda  --outDir lambda/unsubscribe"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.3",

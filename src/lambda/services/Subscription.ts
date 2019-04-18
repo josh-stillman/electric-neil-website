@@ -21,7 +21,7 @@ export default class Subscription {
 
     const id = data.insertedId.toHexString();
 
-    const mailRes = this.mailer.sendSubscribe(email, id)
+    const mailRes = await this.mailer.sendSubscribe(email, id)
 
     return [200, id];
   }

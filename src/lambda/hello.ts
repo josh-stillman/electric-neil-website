@@ -1,7 +1,7 @@
 import { APIGatewayEvent, Callback, Context, Handler } from 'aws-lambda';
 // import { MongoClient, MongoClientOptions, DbCollectionOptions, ReadPreference, Db } from 'mongodb';
 import { MongoClient } from 'mongodb';
-import { getDbName } from '../utils';
+import { getDbName } from './utils';
 
 exports.handler = async (event: APIGatewayEvent, context: Context, callback: Callback) => {
   console.log('queryStringParameters', event.queryStringParameters);

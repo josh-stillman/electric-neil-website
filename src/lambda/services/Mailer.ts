@@ -1,6 +1,9 @@
-import nodemailer from 'nodemailer';
-import mailgunTransport from 'nodemailer-mailgun-transport'
-import dotenv from 'dotenv';
+// import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
+// import mailgunTransport from 'nodemailer-mailgun-transport'
+const  mailgunTransport = require('nodemailer-mailgun-transport');
+// import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 import { getBaseUrl } from '../utils'
 dotenv.config();
 

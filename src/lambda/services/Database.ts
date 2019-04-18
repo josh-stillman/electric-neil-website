@@ -1,6 +1,7 @@
 import { MongoClient, MongoClientOptions,  Db, ObjectId } from 'mongodb';
 
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 dotenv.config();
 
 export const getDb = async () => {
@@ -26,6 +27,7 @@ export class Database {
       };
 
       const client = await MongoClient.connect(this.url, options);
+      this.mongoClient = client;
       this.db = client.db(this.getDbName());
       return this.db;
   }
@@ -63,6 +65,8 @@ export class Database {
   }
 
   async disconnect() {
-      this.mongoClient!.close();
+    if (this.mongoClient){
+      this.mongoClient.close();
+    }
   }
 }
