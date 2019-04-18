@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && netlify-lambda build src/lambda --config ./config/webpack.functions.build.js",
+    "build": "react-scripts build && yarn zip",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lambda": "netlify-lambda serve src/lambda --config ./config/webpack.functions.serve.js",
