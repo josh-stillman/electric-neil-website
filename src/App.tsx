@@ -3,6 +3,7 @@ import './App.css';
 import SignupForm from './SignupForm';
 import { Route, withRouter, RouteComponentProps } from 'react-router';
 import Banner from './components/Banner';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const baseClass = "App"
 
@@ -35,7 +36,7 @@ class App extends Component<RouteComponentProps> {
             <img src="/sarah-noir.jpg" height="400px"  />
           </div>
         </div>
-
+        <LoadingSpinner/>
         <SignupForm />
 
         <div className={`${baseClass}__links`}>
