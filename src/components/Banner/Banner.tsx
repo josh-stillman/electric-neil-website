@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import {  reactGetBaseUrl } from '../../lambda/utils';
+import LoadingSpinner from '../LoadingSpinner';
 
 interface Props extends RouteComponentProps{
   message?: string;
@@ -43,7 +44,7 @@ class Banner extends Component<Props> {
 
     return (
       <div className={baseClass}>
-        {loading ? "Loading..." : message}
+        {loading && <LoadingSpinner/>}
 
         <Link to="/">
           <button>

@@ -11,6 +11,7 @@ class SignupForm extends Component {
     value: '',
     error: true,
     showError: false,
+    loading: false,
   };
 
   onChange = (e: any) => {
@@ -38,6 +39,8 @@ class SignupForm extends Component {
       return;
     }
 
+    this.setState({loading: true});
+
     fetch(`/.netlify/functions/signup`, {
       method: 'POST',
       headers: {
@@ -47,14 +50,8 @@ class SignupForm extends Component {
       body: JSON.stringify({ email: value, context: process.env.REACT_APP_CONTEXT, baseUrl: reactGetBaseUrl() })
     })
       .then(res => res.json())
-      .then(({ message }) => this.setState({ message }))
-      .catch((e) => this.setState({message: JSON.stringify(e)}));
-  };
-
-  getMessage = () => {
-    fetch(`/.netlify/functions/hello`)
-      .then(res => res.json())
-      .then(({ message }) => this.setState({ message }));
+      .then(({ message }) => this.setState({ message, loading: false, }))
+      .catch((e) => this.setState({message: JSON.stringify(e), loading: false}));
   };
 
   render() {
@@ -71,7 +68,6 @@ class SignupForm extends Component {
         </div>
 
         <div>
-          {/* <button onClick={this.getMessage}>Get new message</button> */}
           <div>Message is {this.state.message}</div>
         </div>
       </div>
