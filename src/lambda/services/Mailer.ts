@@ -28,8 +28,8 @@ export class Mailer {
       from: 'neil@electricneil.com',
       to: email,
       subject: 'Join the Electric Neil Revolution✔',
-      text: 'NEIL!',
-      html: `<p>hello ${email}, <a href="${getBaseUrl ()}/subscribe/${id}">click here</a> to confirm your subscription. your mongo id is ${id}</p>`
+      text: `hello ${email}, go to ${getBaseUrl ()}/subscribe/${id} to confirm your subscription. Your mongo id is ${id}`,
+      html: `<p>hello ${email}, <a href="${getBaseUrl ()}/subscribe/${id}">click here</a> to confirm your subscription. Your mongo id is ${id}</p>`
     };
 
     const res = await this.mailService.sendMail(message);
