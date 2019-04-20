@@ -22,7 +22,7 @@ export const ErrorMessage = styled(P)`
 
 export const StyledButton = styled.button`
   padding: 12px;
-  background-color: green;
+  background-color: #b29e4a;
   font-size: 18px;
   font-family: monospace;
   font-weight: 700;
@@ -58,4 +58,5 @@ export const StyledInput = styled.input`
 export const MessageContainer = styled.div`
   min-height: 23px;
   max-height: 23px;
+  margin-bottom: 22px;
 `;
