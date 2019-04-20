@@ -45,11 +45,12 @@ class Banner extends Component<Props> {
     return (
       <div className={baseClass}>
         {loading && <LoadingSpinner/>}
+        {message}
 
         <Link to="/">
-          <button>
-            Close this modal
-          </button>
+          <div>
+            ❌
+          </div>
         </Link>
       </div>);
   }

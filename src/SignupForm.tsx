@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { reactGetBaseUrl } from './lambda/utils';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const baseClass = 'signup-form';
 
@@ -55,7 +56,7 @@ class SignupForm extends Component {
   };
 
   render() {
-    const { error, showError, value } = this.state;
+    const { error, loading, showError, value } = this.state;
 
     return (
       <div className={baseClass}>
@@ -64,6 +65,7 @@ class SignupForm extends Component {
           <p>Mailing List</p>
           <input value={value} onChange={this.onChange} onBlur={this.onBlur} placeholder="neil@neil.com" />
           <button disabled={error} onClick={this.submitEmail}>Join the Neil Revolution</button>
+          {loading && <LoadingSpinner/>}
           {error && showError && <p>Invalid Email Address</p>}
         </div>
 
