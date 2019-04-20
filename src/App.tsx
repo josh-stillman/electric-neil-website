@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SignupForm from './SignupForm';
+import SignupForm from './components/SignupForm/';
 import { Route, withRouter, RouteComponentProps } from 'react-router';
 import Banner from './components/Banner';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -46,11 +46,11 @@ class App extends Component<RouteComponentProps> {
             </a>
           </div>
 
-          <div className={`${baseClass}__link-item`}>
+          {/* <div className={`${baseClass}__link-item`}>
             <a href="https://twitter.com/electric_neils" target="_blank">
               <img src="/twit.png" height="64px"  />
             </a>
-          </div>
+          </div> */}
 
           <div className={`${baseClass}__link-item`}>
             <a href="mailto:electric.neil.band@gmail.com">
