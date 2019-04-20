@@ -5,9 +5,9 @@ import { Mailer } from './Mailer';
 export default class Subscription {
   db: Database;
   mailer: Mailer;
-  constructor({ baseUrl, context }: {baseUrl?: string, context?: string}) {
+  constructor({ context }: {context?: string}) {
     this.db = new Database({ context });
-    this.mailer = new Mailer(baseUrl);
+    this.mailer = new Mailer();
   }
 
   async add(email: string) {
@@ -34,10 +34,10 @@ export default class Subscription {
     this.db.disconnect();
 
     if (err) {
-      return [400, 'Email address not found. Please sign up again.'];
+      return [400, 'Email address not found. Please sign up with your email in the form below.'];
     }
 
-    return [200, 'Email Successfully Confirmed. Welcome to the Neil Revolution!'];
+    return [200, 'Email Successfully Confirmed. Welcome to the Electric Neil Revolution!  Stay tuned for up-to-the-minute Neil News.'];
   }
 
   async unsubscribe(id: string) {
@@ -51,6 +51,6 @@ export default class Subscription {
       return [400, 'Error: Email address not found.'];
     }
 
-    return [200, 'The Neil is sorry to see you go.  Sign up again at electricneil.com whenever you\'re ready to rock again!'];
+    return [200, 'The Neil is sorry to see you go.  Sign up again here whenever you\'re ready to rock and roll again!'];
   }
 }

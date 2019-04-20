@@ -14,7 +14,7 @@ exports.handler = async (event: APIGatewayEvent, context: Context) => {
     };
   }
 
-  const handler = new Subscription({baseUrl: body.baseUrl, context: body.context});
+  const handler = new Subscription({ context: body.context});
 
   const response = await handler.add(body.email)
 

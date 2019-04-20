@@ -22,7 +22,7 @@ export class Mailer {
     };
     this.transport = mailgunTransport(this.transportOptions);
     this.mailService = nodemailer.createTransport(this.transport);
-    this.baseUrl = baseUrl || reactGetBaseUrl() || process.env.URL || '';
+    this.baseUrl = baseUrl || process.env.URL || '';
   }
 
   async sendSubscribe(email: string, id: string) {

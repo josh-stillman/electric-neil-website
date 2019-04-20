@@ -48,7 +48,7 @@ class SignupForm extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: value, context: process.env.REACT_APP_CONTEXT, baseUrl: reactGetBaseUrl() })
+      body: JSON.stringify({ email: value, context: process.env.REACT_APP_CONTEXT })
     })
       .then(res => res.json())
       .then(({ message }) => this.setState({ message, loading: false, }))

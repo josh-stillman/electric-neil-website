@@ -13,7 +13,7 @@ exports.handler = async (event: APIGatewayEvent, context: Context) => {
     return;
   }
 
-  const handler = new Subscription({baseUrl: body.baseUrl, context: body.context});
+  const handler = new Subscription({context: body.context});
 
   const response = await handler.unsubscribe(body.id)
 

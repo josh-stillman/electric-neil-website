@@ -31,7 +31,7 @@ class Banner extends Component<Props> {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ id: subscriber_id,  context: process.env.REACT_APP_CONTEXT, baseUrl: reactGetBaseUrl() })
+      body: JSON.stringify({ id: subscriber_id,  context: process.env.REACT_APP_CONTEXT })
     })
       .then(res => res.json())
       .then(({ message }) => this.setState({ message, loading: false }))
