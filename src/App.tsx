@@ -8,7 +8,7 @@ const baseClass = "App"
 
 class App extends Component<RouteComponentProps> {
   render() {
-    console.log("env vars", process.env.REACT_APP_CONTEXT, process.env.REACT_APP_DEPLOY_URL)
+    console.log("env vars", process.env.REACT_APP_CONTEXT, process.env.REACT_APP_DEPLOY_URL, process.env.ENV)
     return (
       <div className="App">
         <Route exact={true} path="/subscribe/:subscriber_id" render={(props) => <Banner type="subscribe" {...props}/>}/>
