@@ -13,6 +13,7 @@ class SignupForm extends Component {
     error: true,
     showError: false,
     loading: false,
+    errorResponse: false,
   };
 
   onChange = (e: any) => {
@@ -50,13 +51,16 @@ class SignupForm extends Component {
       },
       body: JSON.stringify({ email: value, context: process.env.REACT_APP_CONTEXT })
     })
-      .then(res => res.json())
-      .then(({ message }) => this.setState({ message, loading: false, }))
-      .catch((e) => this.setState({message: JSON.stringify(e), loading: false}));
+    .then(res => {
+      this.setState({ errorResponse: res.status >= 400 })
+      return res.json()
+    })
+      .then(({ message }) => this.setState({ message, loading: false }))
+      .catch((e) => this.setState({message: 'Error.  Please try again later.', loading: false, errorResponse: true}));
   };
 
   render() {
-    const { error, loading, showError, value } = this.state;
+    const { error, errorResponse, loading, showError, value } = this.state;
 
     return (
       <Wrapper>
@@ -72,13 +76,8 @@ class SignupForm extends Component {
           <MessageContainer>
             {error && showError && <ErrorMessage>Invalid Email Address</ErrorMessage>}
 
-            {!!this.state.message && <Header>{this.state.message}</Header>}
+            {!!this.state.message && <Header errorResponse={errorResponse}>{this.state.message}</Header>}
           </MessageContainer>
-        {/* </div> */}
-
-        {/* <div>
-          <div>Message is {this.state.message}</div>
-        </div> */}
       </Wrapper>
     );
   }

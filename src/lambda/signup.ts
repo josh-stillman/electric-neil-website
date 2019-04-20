@@ -22,6 +22,6 @@ exports.handler = async (event: APIGatewayEvent, context: Context) => {
 
   return {
     statusCode: response[0],
-    body: JSON.stringify({ message: `email success with id of ${id}` }),
+    body: JSON.stringify({ message: response[1] }),
   };
 };

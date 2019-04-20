@@ -6,9 +6,10 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Header = styled.div`
+export const Header = styled.div<{errorResponse?: boolean}>`
   font-size: 22px;
   padding: 8px;
+  ${({errorResponse}) => errorResponse && 'color: red;'}
 `;
 
 export const P = styled.div`
@@ -57,6 +58,7 @@ export const StyledInput = styled.input`
 
 export const MessageContainer = styled.div`
   min-height: 23px;
-  max-height: 23px;
+  /* max-height: 23px; */
   margin-bottom: 22px;
+  max-width: 100%;
 `;

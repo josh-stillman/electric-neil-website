@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Link } from 'react-router-dom';
-import {  reactGetBaseUrl } from '../../lambda/utils';
+import { StyledLink } from './Banner.css';
 import LoadingSpinner from '../LoadingSpinner';
 
 interface Props extends RouteComponentProps{
@@ -33,9 +32,14 @@ class Banner extends Component<Props> {
       },
       body: JSON.stringify({ id: subscriber_id,  context: process.env.REACT_APP_CONTEXT })
     })
-      .then(res => res.json())
-      .then(({ message }) => this.setState({ message, loading: false }))
-      .catch((e) => this.setState({message: JSON.stringify(e)}));
+      .then(res => {
+        if (res.status >= 400) {
+          this.setState({errorResponse: true})
+        }
+        return res.json()
+      })
+      .then(({ message }) => this.setState({ message, loading: false, errorResponse: false }))
+      .catch((e) => this.setState({message: JSON.stringify(e), errorResponse: true }));
   };
 
   render() {
@@ -47,11 +51,11 @@ class Banner extends Component<Props> {
         {loading && <LoadingSpinner/>}
         {message}
 
-        <Link to="/">
+        <StyledLink to="/">
           <div>
             ❌
           </div>
-        </Link>
+        </StyledLink>
       </div>);
   }
 
