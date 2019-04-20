@@ -4,19 +4,21 @@ import { MongoClient, MongoClientOptions,  Db, ObjectId } from 'mongodb';
 const dotenv = require('dotenv');
 dotenv.config();
 
-export const getDb = async () => {
-  const db = new Database();
-  await db.connect();
-  return db;
-}
+// export const getDb = async () => {
+//   const db = new Database();
+//   await db.connect();
+//   return db;
+// }
 
 export class Database {
   url: string;
   mongoClient?: MongoClient;
+  context?: string;
   db?: Db;
 
-  constructor(url?: string) {
+  constructor({ url, context }: {url?: string, context?: string}) {
     this.url = url || process.env.MONGO_URL || '';
+    this.context = context || process.env.ENV || '';
   }
 
   async connect() {
@@ -33,7 +35,8 @@ export class Database {
   }
 
   getDbName() {
-    return process.env.CONTEXT === 'production' ? 'services' : 'DEV';
+    // TODO: use env var when netlify exposes it to functions
+    return this.context === 'production' ? 'services' : 'DEV';
   }
 
   async getCollection(collectionName: string) {

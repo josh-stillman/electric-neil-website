@@ -5,3 +5,11 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[context.production.environment]
+  REACT_APP_CONTEXT="$CONTEXT"
+  REACT_APP_DEPLOY_URL="$DEPLOY_URL"
+
+[context.deploy-preview.environment]
+  REACT_APP_CONTEXT="$CONTEXT"
+  REACT_APP_DEPLOY_URL="$DEPLOY_URL"

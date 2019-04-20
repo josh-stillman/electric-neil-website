@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
+import {  reactGetBaseUrl } from '../../lambda/utils';
 
 interface Props extends RouteComponentProps{
   message?: string;
@@ -29,7 +30,7 @@ class Banner extends Component<Props> {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ id: subscriber_id })
+      body: JSON.stringify({ id: subscriber_id,  context: process.env.REACT_APP_CONTEXT, baseUrl: reactGetBaseUrl() })
     })
       .then(res => res.json())
       .then(({ message }) => this.setState({ message, loading: false }))

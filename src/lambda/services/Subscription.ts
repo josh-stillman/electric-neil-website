@@ -5,9 +5,9 @@ import { Mailer } from './Mailer';
 export default class Subscription {
   db: Database;
   mailer: Mailer;
-  constructor() {
-    this.db = new Database();
-    this.mailer = new Mailer();
+  constructor({ baseUrl, context }: {baseUrl?: string, context?: string}) {
+    this.db = new Database({ context });
+    this.mailer = new Mailer(baseUrl);
   }
 
   async add(email: string) {

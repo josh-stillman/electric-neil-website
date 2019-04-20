@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { reactGetBaseUrl } from './lambda/utils';
 
 const baseClass = 'signup-form';
 
@@ -43,7 +44,7 @@ class SignupForm extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: value })
+      body: JSON.stringify({ email: value, context: process.env.REACT_APP_CONTEXT, baseUrl: reactGetBaseUrl() })
     })
       .then(res => res.json())
       .then(({ message }) => this.setState({ message }))
