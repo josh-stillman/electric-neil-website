@@ -32,11 +32,11 @@ class App extends Component<RouteComponentProps> {
             <img src="/dan-noir.jpg" height="400px"  />
           </div>
 
-          <div className={`${baseClass}__band-pics-closeup`}>
+          {/* <div className={`${baseClass}__band-pics-closeup`}>
             <img src="/sarah-noir.jpg" height="400px"  />
-          </div>
+          </div> */}
         </div>
-        <LoadingSpinner/>
+
         <SignupForm />
 
         <div className={`${baseClass}__links`}>
