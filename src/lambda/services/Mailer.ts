@@ -29,9 +29,9 @@ export class Mailer {
     const message = {
       from: 'neil@electricneil.com',
       to: email,
-      subject: 'Join the Electric Neil Revolution✔',
-      text: `hello ${email}, go to ${this.baseUrl}/subscribe/${id} to confirm your subscription. Your mongo id is ${id}`,
-      html: `<p>hello ${email}, <a href="${this.baseUrl}/subscribe/${id}">click here</a> to confirm your subscription. Your mongo id is ${id}</p>`
+      subject: 'Welcome to the Electric Neil Revolution🤘🤘🤘',
+      text: `Welcome to the ELECTRIC NEIL MAILING LIST EXPERIENCE! Go to ${this.baseUrl}/subscribe/${id} to confirm your subscription and get down with the Neil. 💩Unsubscribe💩: ${this.baseUrl}/unsubscribe/${id}`,
+      html: `<p>Welcome to the ELECTRIC NEIL MAILING LIST EXPERIENCE! <a href="${this.baseUrl}/subscribe/${id}">Click here</a> to confirm your subscription and get down with the Neil.</p> <p><a href="${this.baseUrl}/unsubscribe/${id}">💩Unsubscribe💩</a></p>`
     };
 
     const res = await this.mailService.sendMail(message);
