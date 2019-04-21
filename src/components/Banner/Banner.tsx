@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { StyledLink } from './Banner.css';
+import { StyledP, StyledLink, Wrapper } from './Banner.css';
 import LoadingSpinner from '../LoadingSpinner';
 
 interface Props extends RouteComponentProps{
@@ -43,20 +43,17 @@ class Banner extends Component<Props> {
   };
 
   render() {
-    const { match } = this.props;
     const { message, loading } = this.state;
 
     return (
-      <div className={baseClass}>
+      <Wrapper className={baseClass}>
         {loading && <LoadingSpinner/>}
-        {message}
+        {message && <StyledP>{message}</StyledP>}
 
         <StyledLink to="/">
-          <div>
             ❌
-          </div>
         </StyledLink>
-      </div>);
+      </Wrapper>);
   }
 
 }
