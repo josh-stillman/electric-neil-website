@@ -2,16 +2,45 @@
   "name": "neil-frontend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
-  },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && yarn zip",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lambda": "netlify-lambda serve src/lambda --config ./config/webpack.functions.serve.js",
+    "build:lambda": "netlify-lambda build src/lambda --config ./config/webpack.functions.build.js",
+    "lint": "tslint -c tslint.json src/**/*.{ts,tsx}",
+    "zip": "tsc src/lambda/signup.ts --rootDir src/lambda  --outDir lambda/signup && tsc src/lambda/confirm.ts --rootDir src/lambda  --outDir lambda/confirm && tsc src/lambda/unsubscribe.ts --rootDir src/lambda  --outDir lambda/unsubscribe"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/aws-lambda": "^8.10.19",
+    "@types/dotenv": "^6.1.1",
+    "@types/ejs": "^2.6.3",
+    "@types/jest": "^24.0.6",
+    "@types/mongodb": "^3.1.23",
+    "@types/node": "^11.9.4",
+    "@types/nodemailer": "^4.6.7",
+    "@types/nodemailer-mailgun-transport": "^1.4.0",
+    "@types/react": "^16.8.3",
+    "@types/react-dom": "^16.8.2",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/styled-components": "4.1.8",
+    "ejs": "^2.6.1",
+    "mongodb": "^3.1.13",
+    "nodemailer": "^6.1.0",
+    "nodemailer-mailgun-transport": "^1.4.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.1",
+    "styled-components": "^4.2.0",
+    "tslint": "^5.12.1",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.3.3"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +50,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "dotenv-webpack": "^1.7.0",
+    "http-proxy-middleware": "^0.19.1",
+    "netlify-lambda": "^1.4.5"
+  }
 }

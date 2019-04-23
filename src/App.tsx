@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
+import SignupForm from './components/SignupForm/';
+import { Route, withRouter, RouteComponentProps } from 'react-router';
+import Banner from './components/Banner';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const baseClass = "App"
 
-class App extends Component {
+class App extends Component<RouteComponentProps> {
   render() {
+    // console.log("env vars", process.env.REACT_APP_CONTEXT, process.env.REACT_APP_DEPLOY_URL, process.env.ENV)
     return (
       <div className="App">
+        <Route exact={true} path="/subscribe/:subscriber_id" render={(props) => <Banner type="subscribe" {...props}/>}/>
+        <Route exact={true} path="/unsubscribe/:subscriber_id" render={(props) => <Banner type="unsubscribe" {...props}/>}/>
+
         <a href="https://www.facebook.com/ElectricNeil/" target="_blank">
           <img className={`${baseClass}__logo`} src="/electric-neil-logo2.png" width="350px" />
         </a>
@@ -24,10 +32,12 @@ class App extends Component {
             <img src="/dan-noir.jpg" height="400px"  />
           </div>
 
-          <div className={`${baseClass}__band-pics-closeup`}>
+          {/* <div className={`${baseClass}__band-pics-closeup`}>
             <img src="/sarah-noir.jpg" height="400px"  />
-          </div>
+          </div> */}
         </div>
+
+        <SignupForm />
 
         <div className={`${baseClass}__links`}>
           <div className={`${baseClass}__link-item`}>
@@ -36,11 +46,11 @@ class App extends Component {
             </a>
           </div>
 
-          <div className={`${baseClass}__link-item`}>
+          {/* <div className={`${baseClass}__link-item`}>
             <a href="https://twitter.com/electric_neils" target="_blank">
               <img src="/twit.png" height="64px"  />
             </a>
-          </div>
+          </div> */}
 
           <div className={`${baseClass}__link-item`}>
             <a href="mailto:electric.neil.band@gmail.com">
@@ -65,4 +75,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

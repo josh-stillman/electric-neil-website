@@ -1,0 +1,16 @@
+[build]
+  functions = "lambda"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+
+[context.production]
+[context.production.environment]
+  ENV="production"
+
+[context.deploy-preview]
+[context.deploy-preview.environment]
+  ENV="deploy-preview"
