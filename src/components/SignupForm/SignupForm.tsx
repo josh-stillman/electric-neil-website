@@ -55,7 +55,7 @@ class SignupForm extends Component {
       this.setState({ errorResponse: res.status >= 400 })
       return res.json()
     })
-      .then(({ message }) => this.setState({ message, loading: false }))
+      .then(({ message }) => this.setState({ message: 'Please check your email and click the link to confirm.', loading: false }))
       .catch((e) => this.setState({message: 'Error.  Please try again later.', loading: false, errorResponse: true}));
   };
 

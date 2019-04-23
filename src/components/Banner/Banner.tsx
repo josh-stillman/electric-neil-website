@@ -39,7 +39,7 @@ class Banner extends Component<Props> {
         return res.json()
       })
       .then(({ message }) => this.setState({ message, loading: false, errorResponse: false }))
-      .catch((e) => this.setState({message: JSON.stringify(e), errorResponse: true }));
+      .catch((e) => this.setState({message: 'Error.  Please try again.', errorResponse: true }));
   };
 
   render() {
