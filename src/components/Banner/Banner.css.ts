@@ -25,4 +25,3 @@ export const StyledP = styled(P)`
   color: black;
   max-width: 85%;
 `;
-

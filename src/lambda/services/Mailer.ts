@@ -1,16 +1,19 @@
-// import nodemailer from 'nodemailer';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const nodemailer = require('nodemailer');
-// import mailgunTransport from 'nodemailer-mailgun-transport'
-const  mailgunTransport = require('nodemailer-mailgun-transport');
-// import dotenv from 'dotenv';
+
+const mailgunTransport = require('nodemailer-mailgun-transport');
 const dotenv = require('dotenv');
-import { reactGetBaseUrl } from '../utils'
+
 dotenv.config();
 
 export class Mailer {
   transportOptions: any;
+
   transport: any;
+
   mailService: any;
+
   baseUrl: string;
 
   constructor(baseUrl?: string) {
@@ -44,10 +47,11 @@ export class Mailer {
         <br/>
         <br/>
         <hr/>
-        <p><a href="${this.baseUrl}/unsubscribe/${id}">💩Unsubscribe💩</a></p>`
+        <p><a href="${this.baseUrl}/unsubscribe/${id}">💩Unsubscribe💩</a></p>`,
     };
 
     const res = await this.mailService.sendMail(message);
+    // eslint-disable-next-line no-console
     console.log(res);
     return res;
   }

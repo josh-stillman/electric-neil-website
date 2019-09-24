@@ -6,10 +6,10 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Header = styled.div<{errorResponse?: boolean}>`
+export const Header = styled.div<{ errorResponse?: boolean }>`
   font-size: 22px;
   padding: 8px;
-  ${({errorResponse}) => errorResponse && 'color: red;'}
+  ${({ errorResponse }) => errorResponse && 'color: red;'}
 `;
 
 export const P = styled.div`
@@ -41,7 +41,7 @@ export const StyledButton = styled.button`
   }
 
   &:hover:enabled {
-    background-color: #2EE59D;
+    background-color: #2ee59d;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
     transform: translateY(-7px);

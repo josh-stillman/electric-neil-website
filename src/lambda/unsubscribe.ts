@@ -1,7 +1,7 @@
-import { APIGatewayEvent, Callback, Context } from 'aws-lambda';
+import { APIGatewayEvent, Context } from 'aws-lambda';
 import Subscription from './services/Subscription';
 
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 exports.handler = async (event: APIGatewayEvent, context: Context) => {
   const body = event.body && JSON.parse(event.body);
 
@@ -10,12 +10,11 @@ exports.handler = async (event: APIGatewayEvent, context: Context) => {
       statusCode: 400,
       body: JSON.stringify({ message: 'bad request' }),
     };
-    return;
   }
 
-  const handler = new Subscription({context: body.context});
+  const handler = new Subscription({ context: body.context });
 
-  const response = await handler.unsubscribe(body.id)
+  const response = await handler.unsubscribe(body.id);
 
   return {
     statusCode: response[0],

@@ -1,7 +1,8 @@
-import { MongoClient, MongoClientOptions,  Db, ObjectId } from 'mongodb';
+import { MongoClient, MongoClientOptions, Db, ObjectId } from 'mongodb';
 
-// import dotenv from 'dotenv';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 // export const getDb = async () => {
@@ -12,26 +13,30 @@ dotenv.config();
 
 export class Database {
   url: string;
+
   mongoClient?: MongoClient;
+
+  // eslint-disable-next-line react/static-property-placement
   context?: string;
+
   db?: Db;
 
-  constructor({ url, context }: {url?: string, context?: string}) {
+  constructor({ url, context }: { url?: string; context?: string }) {
     this.url = url || process.env.MONGO_URL || '';
     this.context = context || process.env.ENV || '';
   }
 
   async connect() {
-      const options: MongoClientOptions = {
-          ssl: true,
-          socketTimeoutMS: 1000,
-          useNewUrlParser: true,
-      };
+    const options: MongoClientOptions = {
+      ssl: true,
+      socketTimeoutMS: 1000,
+      useNewUrlParser: true,
+    };
 
-      const client = await MongoClient.connect(this.url, options);
-      this.mongoClient = client;
-      this.db = client.db(this.getDbName());
-      return this.db;
+    const client = await MongoClient.connect(this.url, options);
+    this.mongoClient = client;
+    this.db = client.db(this.getDbName());
+    return this.db;
   }
 
   getDbName() {
@@ -40,35 +45,37 @@ export class Database {
   }
 
   async getCollection(collectionName: string) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this.db!.collection(collectionName);
   }
 
   async addSubscriber(email: string) {
     const subs = await this.getCollection('subscribers');
-    return await subs.insertOne({
-        email,
-        createdAt: new Date().toISOString(),
-        confirmed: false,
+    return subs.insertOne({
+      email,
+      createdAt: new Date().toISOString(),
+      confirmed: false,
     });
   }
 
   async confirmSubscriber(id: string) {
     const subs = await this.getCollection('subscribers');
-    return await subs.updateOne(
-      { _id : new ObjectId(id) },
-      { $set: { 'confirmed' : true } });
-    }
+    return subs.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { confirmed: true } }
+    );
+  }
 
   async unsubscribe(id: string) {
     const subs = await this.getCollection('subscribers');
-    const email = await subs.findOne({_id: new ObjectId(id)});
+    const email = await subs.findOne({ _id: new ObjectId(id) });
     const unsubs = await this.getCollection('unsubscribes');
     await unsubs.insertOne(email);
-    return await subs.deleteOne(email);
+    return subs.deleteOne(email);
   }
 
   async disconnect() {
-    if (this.mongoClient){
+    if (this.mongoClient) {
       this.mongoClient.close();
     }
   }

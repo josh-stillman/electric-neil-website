@@ -1,10 +1,8 @@
-import { APIGatewayEvent, Callback, Context, Handler } from 'aws-lambda';
-// import { MongoClient, MongoClientOptions, DbCollectionOptions, ReadPreference, Db } from 'mongodb';
-import { MongoClient } from 'mongodb';
-import { getDbName } from './utils';
+import { APIGatewayEvent, Context } from 'aws-lambda';
+
 import Subscription from './services/Subscription';
 
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 exports.handler = async (event: APIGatewayEvent, context: Context) => {
   const body = event.body && JSON.parse(event.body);
   if (!body || !body.email) {
@@ -14,11 +12,9 @@ exports.handler = async (event: APIGatewayEvent, context: Context) => {
     };
   }
 
-  const handler = new Subscription({ context: body.context});
+  const handler = new Subscription({ context: body.context });
 
-  const response = await handler.add(body.email)
-
-  const id = response[1];
+  const response = await handler.add(body.email);
 
   return {
     statusCode: response[0],

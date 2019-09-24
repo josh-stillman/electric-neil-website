@@ -3,13 +3,14 @@ import { RouteComponentProps } from 'react-router';
 import { StyledP, StyledLink, Wrapper } from './Banner.css';
 import LoadingSpinner from '../LoadingSpinner';
 
-interface Props extends RouteComponentProps{
+interface Props extends RouteComponentProps {
   message?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   match: any;
   type: 'subscribe' | 'unsubscribe';
 }
 
-const baseClass = 'banner'
+const baseClass = 'banner';
 class Banner extends Component<Props> {
   state = {
     loading: true,
@@ -24,22 +25,40 @@ class Banner extends Component<Props> {
     const { match, type } = this.props;
     const { subscriber_id } = match.params;
 
-    fetch(`/.netlify/functions/${type === 'unsubscribe' ? 'unsubscribe' : 'confirm'}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ id: subscriber_id,  context: process.env.REACT_APP_CONTEXT })
-    })
+    fetch(
+      `/.netlify/functions/${
+        type === 'unsubscribe' ? 'unsubscribe' : 'confirm'
+      }`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: subscriber_id,
+          context: process.env.REACT_APP_CONTEXT,
+        }),
+      }
+    )
       .then(res => {
         if (res.status >= 400) {
-          this.setState({errorResponse: true})
+          // eslint-disable-next-line react/no-unused-state
+          this.setState({ errorResponse: true });
         }
-        return res.json()
+        return res.json();
       })
-      .then(({ message }) => this.setState({ message, loading: false, errorResponse: false }))
-      .catch((e) => this.setState({message: 'Error.  Please try again.', errorResponse: true }));
+      .then(({ message }) =>
+        // eslint-disable-next-line react/no-unused-state
+        this.setState({ message, loading: false, errorResponse: false })
+      )
+      .catch(() =>
+        this.setState({
+          message: 'Error.  Please try again.',
+          // eslint-disable-next-line react/no-unused-state
+          errorResponse: true,
+        })
+      );
   };
 
   render() {
@@ -47,15 +66,13 @@ class Banner extends Component<Props> {
 
     return (
       <Wrapper className={baseClass}>
-        {loading && <LoadingSpinner/>}
+        {loading && <LoadingSpinner />}
         {message && <StyledP>{message}</StyledP>}
-
-        <StyledLink to="/">
-            ❌
-        </StyledLink>
-      </Wrapper>);
+        {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
+        <StyledLink to="/">❌</StyledLink>
+      </Wrapper>
+    );
   }
-
 }
 
 export default Banner;
