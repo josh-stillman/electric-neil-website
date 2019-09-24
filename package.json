@@ -36,7 +36,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.1",
+    "react-scripts": "3.1.2",
     "styled-components": "^4.2.0",
     "tslint-config-airbnb": "^5.11.1",
     "tslint-react": "^3.6.0",
