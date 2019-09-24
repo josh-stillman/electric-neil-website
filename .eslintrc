@@ -1,0 +1,40 @@
+{
+  "extends": [
+    "airbnb", // only if using airbnb
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier/@typescript-eslint",
+    "prettier/react",
+    "plugin:prettier/recommended" // must be last in extends array
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "settings":  {
+    "react":  {
+      "version": "detect"
+    }
+  },
+  "rules": {
+  "prettier/prettier": "error"
+  }
+}
