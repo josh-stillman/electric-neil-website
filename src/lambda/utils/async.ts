@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const to = (promise: Promise<any>) => {
   return promise
     .then((result: any) => {
@@ -5,5 +6,5 @@ export const to = (promise: Promise<any>) => {
     })
     .catch((err: any) => {
       return [err];
-    })
-}
+    });
+};

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // @see https://github.com/netlify/netlify-lambda#webpack-configuration
 const webpack = require('webpack');
 

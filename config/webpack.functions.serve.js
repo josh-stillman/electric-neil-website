@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // For serving functions locally
 
 const Dotenv = require('dotenv-webpack');
