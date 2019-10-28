@@ -69,7 +69,7 @@ class App extends Component<RouteComponentProps> {
           </div> */}
 
           <div className={`${baseClass}__link-item`}>
-            <a href="mailto:electric.neil.band@gmail.com">
+            <a href="mailto:neil@electricneil.com">
               <img src="/email.png" height="64px" />
             </a>
           </div>
