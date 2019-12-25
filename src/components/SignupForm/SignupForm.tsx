@@ -91,7 +91,7 @@ class SignupForm extends Component {
     return (
       <Wrapper>
         {/* <div> */}
-        <Header>Mailing List</Header>
+        <Header>Mailing List for Upcoming Shows</Header>
 
         <StyledInput
           value={value}

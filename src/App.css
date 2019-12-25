@@ -68,10 +68,21 @@ a {
 .App__links {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 42px;
+  align-items: center;
+  margin-bottom: 32px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+
+}
+
+.App__link-item--middle {
+  flex: 2;
+  margin: 0 28px;
 }
 
 .App__link-item {
+  flex: 1;
+  margin: 10px 0;
   font-size: 64px;
 }
 
