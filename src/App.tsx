@@ -48,9 +48,9 @@ class App extends Component<RouteComponentProps> {
             <img src="/dan-noir.jpg" height="400px" />
           </div>
 
-          {/* <div className={`${baseClass}__band-pics-closeup`}>
-            <img src="/sarah-noir.jpg" height="400px"  />
-          </div> */}
+          <div className={`${baseClass}__band-pics-closeup`}>
+            <img src="/mike-noir.jpeg" height="400px" />
+          </div>
         </div>
 
         <SignupForm />
@@ -58,7 +58,7 @@ class App extends Component<RouteComponentProps> {
         <div className={`${baseClass}__links`}>
           <div className={`${baseClass}__link-item`}>
             <a href="https://www.facebook.com/ElectricNeil/" target="_blank">
-              <img src="/fb.png" height="64px" />
+              <img src="/fb.png" alt="Facebook" height="64px" />
             </a>
           </div>
 
@@ -68,9 +68,27 @@ class App extends Component<RouteComponentProps> {
             </a>
           </div> */}
 
+          <div
+            className={`${baseClass}__link-item, ${baseClass}__link-item--middle`}
+          >
+            {/* <a href="https://soundcloud.com/electric_neil" target="_blank">
+              <img src="/sc.png" alt="Sound Cloud" height="64px" />
+            </a>        */}
+            <iframe
+              title="soundcloud"
+              style={{ maxWidth: '450px', minWidth: '300px' }}
+              width="100%"
+              height="300"
+              scrolling="no"
+              frameBorder="no"
+              allow="autoplay"
+              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/327074774&color=%23ff5500&auto_play=false&sharing=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&show_artwork=false&buying=false&liking=false&download=false&show_comments=false&show_playcount=false&show_user=false"
+            />
+          </div>
+
           <div className={`${baseClass}__link-item`}>
             <a href="mailto:neil@electricneil.com">
-              <img src="/email.png" height="64px" />
+              <img src="/email.png" alt="Email" height="64px" />
             </a>
           </div>
         </div>
@@ -86,7 +104,12 @@ class App extends Component<RouteComponentProps> {
           </div>
 
           <div className={`${baseClass}__footer-item`}>
-            Photos by Bernard&nbsp;Bluhm
+            <span>
+              Photos by{' '}
+              <a href="http://topolino500.com/" target="_blank">
+                Bernard&nbsp;Bluhm
+              </a>
+            </span>
           </div>
         </div>
       </div>
